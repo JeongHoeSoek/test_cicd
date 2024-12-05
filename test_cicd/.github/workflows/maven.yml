@@ -28,9 +28,6 @@ jobs:
       - name: Build with Maven
         run: mvn -B package --file pom.xml
 
-      - name: Run SonarQube
-        run: mvn sonar:sonar -Dsonar.projectKey=github-action -Dsonar.host.url=${{secrets.SONAR_HOST}} -Dsonar.login=${{secrets.SONAR_TOKEN}}
-
       - name: upload file
         uses: appleboy/scp-action@master
         with:
@@ -56,9 +53,3 @@ jobs:
         uses: advanced-security/maven-dependency-submission-action@v1.3.0
 
 
-      - name: Run SonarQube
-        run: mvn sonar:sonar \
-          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
-          -Dsonar.host.url=${{ secrets.SONAR_HOST }} \
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-          -X
